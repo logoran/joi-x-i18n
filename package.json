@@ -1,0 +1,26 @@
+{
+  "name": "joi-x-i18n",
+  "version": "1.0.0",
+  "description": "i18n error messages extension for Joi",
+  "repository": "https://github.com/logoran/joi-x-i18n",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab -t 100 -a code -c -v"
+  },
+  "keywords": [
+    "joi",
+    "i18n",
+    "translation",
+    "locales"
+  ],
+  "author": "Leo Long",
+  "license": "MIT",
+  "dependencies": {
+    "hoek": "^5.0.3"
+  },
+  "devDependencies": {
+    "code": "^5.2.0",
+    "joi": "^13.2.0",
+    "lab": "^15.4.1"
+  }
+}
