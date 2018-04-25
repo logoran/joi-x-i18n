@@ -1,5 +1,5 @@
 {
-  "root": "value",
+  "root": "valor",
   "key": "\"{{!label}}\" ",
   "messages": {
     "wrapArrays": true
@@ -31,6 +31,7 @@
     "length": "deve conter {{limit}} itens",
     "ordered": "na posição {{pos}}  falha, pois {{reason}}",
     "orderedLength": "na posição {{pos}} falha, pois a matriz deve conter até {{limit}} itens",
+    "ref": "referências \"{{ref}}\" Que não é um inteiro positivo",
     "sparse": "não pode ser uma matriz esparsa",
     "unique": "na posição {{pos}} há um valor duplicado"
   },
@@ -45,13 +46,28 @@
   },
   "date": {
     "base": "deve ser um número em milisegundos ou uma data válida",
+    "format": "deve ser UMA string com um DOS seguintes formatos {{format}}",
+    "strict": "deve ser UMA data válida",
     "min": "deve ser maior ou igual a \"{{limit}}\"",
     "max": "deve ser menor ou igual a \"{{limit}}\"",
     "isoDate": "deve ser uma data no padrão ISO 8601",
+    "timestamp": {
+      "javascript": "deve ser um timestamp válido ou número de milisegundos",
+      "unix": "deve ser um timestamp válido Ou o número de Segundos"
+    },
     "ref": "referencia a \"{{ref}}\" que não é uma data"
   },
   "function": {
-    "base": "deve ser uma função"
+    "base": "deve ser uma função",
+    "arity": "deve ter um arity de {{n}}",
+    "minArity": "deve ter um arity maior ou igual a {{n}}",
+    "maxArity": "deve ter um arity menor ou igual a {{n}}",
+    "ref": "deve ser UMA referência de joi",
+    "class": "deve ser UMA classe"
+  },
+  "lazy": {
+    "base": "!!erro: lazy schema esquema deve ser definido",
+    "schema": "!!erro: lazy schema esquema função deve retornar um esquema"
   },
   "object": {
     "base": "deve ser um objeto",
@@ -60,19 +76,24 @@
     "max": "deve conter no máximo {{limit}} filhos",
     "length": "deve conter {{limit}} filhos",
     "allowUnknown": "não é permitido",
-    "with": "peer obrigatório não encontrado: \"{{peer}}\"",
-    "without": "peer conflitante ou proibido: \"{{peer}}\"",
-    "missing": "deve conter ao menos {{peers}}",
-    "xor": "contém um conflito entre peers exclusivos {{peers}}",
-    "or": "deve conter algum dos peers {{peers}}",
-    "and": "contém {{present}} sem seus peers obrigatórios {{missing}}",
-    "nand": "!!\"{{main}}\" não deve existir juntamente com {{peers}}",
+    "with": "!!\"{{mainWithLabel}}\" peer obrigatório não encontrado: \"{{peerWithLabel}}\"",
+    "without": "!!\"{{mainWithLabel}}\" peer conflitante ou proibido: \"{{peerWithLabel}}\"",
+    "missing": "deve conter ao menos {{peersWithLabels}}",
+    "xor": "contém um conflito entre peers exclusivos {{peersWithLabels}}",
+    "or": "deve conter algum dos peers {{peersWithLabels}}",
+    "and": "contém {{presentWithLabels}} sem seus peers obrigatórios {{missingWithLabels}}",
+    "nand": "!!\"{{mainWithLabel}}\" não deve existir juntamente com {{peersWithLabels}}",
     "assert": "!!\"{{ref}}\" validação falha, pois \"{{ref}}\" falhou em {{message}}",
     "rename": {
       "multiple": "não pôde renomear \"{{from}}\" pois muitas renomeaçãoes estão desativadas e já havia sido renomeado para \"{{to}}\"",
-      "override": "não pôde renomear \"{{from}}\" pois sobrescrever está desabilitado e \"{{to}}\" já existe"
+      "override": "não pôde renomear \"{{from}}\" pois sobrescrever está desabilitado e \"{{to}}\" já existe",
+      "regex": {
+        "multiple": "não pôde renomear \"{{from}}\" pois muitas renomeaçãoes estão desativadas e já havia sido renomeado para \"{{to}}\"",
+        "override": "não pôde renomear \"{{from}}\" pois sobrescrever está desabilitado e \"{{to}}\" já existe"
+      }
     },
-    "type": "deve ser um instância de \"{{type}}\""
+    "type": "deve ser um instância de \"{{type}}\"",
+    "schema": "deve ser UMA instância joi"
   },
   "number": {
     "base": "deve ser um número",
@@ -86,7 +107,9 @@
     "positive": "deve ser um número positivo",
     "precision": "não pode conter mais que {{limit}} casas decimais",
     "ref": "referencia a \"{{ref}}\" na qual não é um número",
-    "multiple": "deve ser múltiplo de {{multiple}}"
+    "multiple": "deve ser múltiplo de {{multiple}}",
+    "port": "deve ser UMA porta válida",
+    "map": "deve ser um número Ou um DOS tipos {{enums}}"
   },
   "string": {
     "base": "deve ser um texto",
@@ -97,15 +120,22 @@
     "token": "deve conter apenas caracteres alpha-numéricos ou underscore '_'",
     "regex": {
       "base": "com o valor \"{{!value}}\" falha ao comparar ao padrão: {{pattern}}",
-      "name": "com o valor \"{{!value}}\" falha ao comparar ao padrão: {{name}}"
+      "name": "com o valor \"{{!value}}\" falha ao comparar ao padrão: {{name}}",
+      "invert": {
+        "base": "com o valor \"{{!value}}\" falha ao comparar ao padrão: {{pattern}}",
+        "name": "com o valor \"{{!value}}\" falha ao comparar ao padrão: {{name}}"
+      }
     },
     "email": "deve ser um email válido",
-    "uri": "dever ser uma URI válida",
-    "uriCustomScheme": "dever ser uma URI válida que se assemelhe ao padrão {{scheme}}",
+    "uri": "dever ser uma uri válida",
+    "uriRelativeOnly": "deve ser válida relativamente uri",
+    "uriCustomScheme": "dever ser uma uri válida que se assemelhe ao padrão {{scheme}}",
     "isoDate": "deve ser uma data no padrão ISO 8601",
     "guid": "deve ser um GUID válido",
     "hex": "deve conter apenas valores hexadecimais",
+    "base64": "deve ser válida Base64 string",
     "hostname": "deve conter apenas hostname válido",
+    "normalize": "deve ser o Unicode normalizado Na {{form}}",
     "lowercase": "deve conter apenas caracteres em caixa baixa",
     "uppercase": "deve conter apenas caracteres em caixa alta",
     "trim": "não deve haver espaços em branco",

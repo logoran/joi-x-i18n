@@ -1,6 +1,6 @@
 {
   "name": "joi-x-i18n",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "i18n error messages extension for Joi",
   "repository": "https://github.com/logoran/joi-x-i18n",
   "main": "index.js",

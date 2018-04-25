@@ -31,6 +31,7 @@
     "length": "tam olarak {{limit}} adet eleman içermeli",
     "ordered": "{{pos}} numaralı eleman hatalı, çünkü {{reason}}",
     "orderedLength": "{{pos}} numaralı elemen hatalı, çünkü dizi en fazla {{limit}} adet eleman içerebilir",
+    "ref": "references \"{{ref}}\" which is not a positive integer",
     "sparse": "dizi boşluk içermemeli",
     "unique": "{{pos}} numaralı eleman değeri dizide daha önce mevcut"
   },
@@ -45,13 +46,28 @@
   },
   "date": {
     "base": "milisaniye değeri veya geçerli bir tarih olmalı",
+    "format": "must be a string with one of the following formats {{format}}",
+    "strict": "must be a valid date",
     "min": "\"{{limit}}\" veya daha büyük bir değer olmalı",
     "max": "\"{{limit}}\" veya daha küçük bir değer olmalı",
     "isoDate": "geçerli bir ISO 8601 formatında tarih olmalı",
+    "timestamp": {
+      "javascript": "must be a valid timestamp or number of milliseconds",
+      "unix": "must be a valid timestamp or number of seconds"
+    },
     "ref": "tarih olmayan bir referans içeriyor (\"{{ref}}\")"
   },
   "function": {
-    "base": "bir fonksiyon olmalı"
+    "base": "bir fonksiyon olmalı",
+    "arity": "must have an arity of {{n}}",
+    "minArity": "must have an arity greater or equal to {{n}}",
+    "maxArity": "must have an arity lesser or equal to {{n}}",
+    "ref": "must be a Joi reference",
+    "class": "must be a class"
+  },
+  "lazy": {
+    "base": "!!schema error: lazy schema must be set",
+    "schema": "!!schema error: lazy schema function must return a schema"
   },
   "object": {
     "base": "nesne olmalı",
@@ -60,19 +76,24 @@
     "max": "en fazla {{limit}} alt değer içerebilir",
     "length": "tam olarak {{limit}} alt değer içermeli",
     "allowUnknown": "izin verilmeyen bir değer",
-    "with": "için \"{{peer}}\" anahtarı da olmalı",
-    "without": "için \"{{peer}}\" anahtarı kullanılamaz",
-    "missing": "en azından {{peers}} anahtarlarından birini içermeli",
-    "xor": "için {{peers}} anahtarları ile çakışma var (xor)",
-    "or": "{{peers}} anahtarlarından birini içermeli",
-    "and": "için {{present}} anahtarı kullanılmış ancak onun gerektirdiği {{missing}} anahtarı kullanılmamış",
-    "nand": "!!\"{{main}}\" ve {{peers}} bir arada kullanılamaz",
+    "with": "!!\"{{mainWithLabel}}\" için \"{{peerWithLabel}}\" anahtarı da olmalı",
+    "without": "!!\"{{mainWithLabel}}\" için \"{{peerWithLabel}}\" anahtarı kullanılamaz",
+    "missing": "en azından {{peersWithLabels}} anahtarlarından birini içermeli",
+    "xor": "için {{peersWithLabels}} anahtarları ile çakışma var (xor)",
+    "or": "{{peersWithLabels}} anahtarlarından birini içermeli",
+    "and": "için {{presentWithLabels}} anahtarı kullanılmış ancak onun gerektirdiği {{missingWithLabels}} anahtarı kullanılmamış",
+    "nand": "!!\"{{mainWithLabel}}\" ve {{peersWithLabels}} bir arada kullanılamaz",
     "assert": "!!\"{{ref}}\" hatalı, çünkü \"{{ref}}\" {{message}}",
     "rename": {
       "multiple": "için \"{{from}}\" anahtarının ismi değiştirilemez, çünkü çoklu isim değiştirilemez ve başka bir anahtarın ismi \"{{to}}\" olarak değiştirilmiş",
-      "override": "için \"{{from}}\" anahtarının ismi değiştirilemez, çünkü üzerine yazılamaz ve \"{{to}}\" zaten mevcut"
+      "override": "için \"{{from}}\" anahtarının ismi değiştirilemez, çünkü üzerine yazılamaz ve \"{{to}}\" zaten mevcut",
+      "regex": {
+        "multiple": "cannot rename child \"{{from}}\" because multiple renames are disabled and another key was already renamed to \"{{to}}\"",
+        "override": "cannot rename child \"{{from}}\" because override is disabled and target \"{{to}}\" exists"
+      }
     },
-    "type": "\"{{type}}\" türünde olmalı"
+    "type": "\"{{type}}\" türünde olmalı",
+    "schema": "must be a Joi instance"
   },
   "number": {
     "base": "bir sayı olmalı",
@@ -86,7 +107,9 @@
     "positive": "pozitif bir sayı olmalı",
     "precision": "en fazla {{limit}} adet ondalık basamak içerebilir",
     "ref": "sayı olmayan bir referans içeriyor (\"{{ref}}\")",
-    "multiple": "{{multiple}} veya katlarından biri olmalı"
+    "multiple": "{{multiple}} veya katlarından biri olmalı",
+    "port": "must be a valid port",
+    "map": "must be a number or one of {{enums}}"
   },
   "string": {
     "base": "karakter dizisi (string) olmalı",
@@ -97,15 +120,22 @@
     "token": "sadece harf, rakam ve alt çizgi (_) içerebilir",
     "regex": {
       "base": "için \"{{!value}}\" değeri istene kalıba uygun değil: {{pattern}}",
-      "name": "için \"{{!value}}\" değeri {{name}} kalıbına uygun değil"
+      "name": "için \"{{!value}}\" değeri {{name}} kalıbına uygun değil",
+      "invert": {
+        "base": "için \"{{!value}}\" değeri istene kalıba uygun değil: {{pattern}}",
+        "name": "için \"{{!value}}\" değeri {{name}} kalıbına uygun değil"
+      }
     },
     "email": "e-posta adresi olmalı",
     "uri": "geçerli bir uri adresi olmalı",
+    "uriRelativeOnly": "must be a valid relative uri",
     "uriCustomScheme": "{{scheme}} kalıbına uygun bir uri değeri olmalı",
     "isoDate": "geçerli bir ISO 8601 tarihi olmalı",
     "guid": "geçerli bir GUID olmalı",
     "hex": "sadece hexadecimal karakterler içerebilir",
+    "base64": "must be a valid base64 string",
     "hostname": "geçerli bir alan adı (hostname) olmalı",
+    "normalize": "must be unicode normalized in the {{form}} form",
     "lowercase": "sadece küçük harfler içerebilir",
     "uppercase": "sadece büyük harfler içerebilir",
     "trim": "başında ve sonunda boşluk içeremez",

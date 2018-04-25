@@ -1,5 +1,5 @@
 {
-  "root": "value",
+  "root": "valeur",
   "key": "\"{{!label}}\" ",
   "messages": {
     "wrapArrays": true
@@ -31,6 +31,7 @@
     "length": "doit contenir {{limit}} articles",
     "ordered": "à la position {{pos}} échoue parce que {{reason}}",
     "orderedLength": "à la position {{pos}} échoue parce que le tableau doit contenir au maximum {{limit}} articles",
+    "ref": "références \"{{ref}}\" qui n'est pas un nombre entier positif",
     "sparse": "ne doit pas être un tableau épars",
     "unique": "la position {{pos}} contient une valeur en double"
   },
@@ -45,13 +46,28 @@
   },
   "date": {
     "base": "doit être un nombre de millisecondes ou une date valide",
+    "format": "doit être une chaîne avec l'un des formats suivants {{format}}",
+    "strict": "doit être une date de validité",
     "min": "doit être égale à au moins \"{{limit}}\"",
     "max": "doit être égale au maximum à \"{{limit}}\"",
     "isoDate": "doit être une date ISO 8601 valide",
+    "timestamp": {
+      "javascript": "doit être valable ou nombre de millisecondes",
+      "unix": "doit être valide ou le nombre de secondes"
+    },
     "ref": "références \"{{ref}}\" qui n'est pas une date"
   },
   "function": {
-    "base": "doit être une fonction"
+    "base": "doit être une fonction",
+    "arity": "doit avoir une solidarité de {{n}}",
+    "minArity": "doit avoir une solidarité supérieure ou égale à {{n}}",
+    "maxArity": "doit avoir une solidarité moindre ou égal à {{n}}",
+    "ref": "référence doit être un joi",
+    "class": "doit être une classe"
+  },
+  "lazy": {
+    "base": "!!erreur: schéma schéma doit être paresseux",
+    "schema": "!!erreur: schéma schéma schéma fonction doivent retourner un paresseux"
   },
   "object": {
     "base": "doit être un objet",
@@ -60,19 +76,24 @@
     "max": "doit contenir au maximum {{limit}} sous-objets",
     "length": "doit contenir {{limit}} sous-objets",
     "allowUnknown": "n'est pas autorisé",
-    "with": "le paire \"{{peer}}\" manquant est requise",
-    "without": "conflit avec un pair interdit \"{{peer}}\"",
-    "missing": "doit contenir au moins un des éléments suivants {{peers}}",
-    "xor": "contient un conflit entre les pairs exclusifs {{peers}}",
-    "or": "doit contenir au moins un des éléments suivants {{peers}}",
-    "and": "contient {{present}} sans ses pairs obligatoires {{missing}}",
-    "nand": "!!\"{{main}}\" ne doit pas exister simultanément avec {{peers}}",
+    "with": "!!\"{{mainWithLabel}}\" le paire \"{{peerWithLabel}}\" manquant est requise",
+    "without": "!!\"{{mainWithLabel}}\" conflit avec un pair interdit \"{{peerWithLabel}}\"",
+    "missing": "doit contenir au moins un des éléments suivants {{peersWithLabels}}",
+    "xor": "contient un conflit entre les pairs exclusifs {{peersWithLabels}}",
+    "or": "doit contenir au moins un des éléments suivants {{peersWithLabels}}",
+    "and": "contient {{presentWithLabels}} sans ses pairs obligatoires {{missingWithLabels}}",
+    "nand": "!!\"{{mainWithLabel}}\" ne doit pas exister simultanément avec {{peersWithLabels}}",
     "assert": "la validation de !!\"{{ref}}\" a échoué parce que  \"{{ref}}\" échoue de {{message}}",
     "rename": {
       "multiple": "ne peut pas renommer le sous-objet \"{{from}}\" parce que plusieurs renoms sont désactivés et qu'une autre clé a déjà été renommée en \"{{to}}\"",
-      "override": "ne peut pas renommer le sous-objet \"{{from}}\" parce que le contournement est désactivé et la cible \"{{to}}\" est désactivée"
+      "override": "ne peut pas renommer le sous-objet \"{{from}}\" parce que le contournement est désactivé et la cible \"{{to}}\" est désactivée",
+      "regex": {
+        "multiple": "ne peut pas renommer le sous-objet \"{{from}}\" parce que plusieurs renoms sont désactivés et qu'une autre clé a déjà été renommée en \"{{to}}\"",
+        "override": "ne peut pas renommer le sous-objet \"{{from}}\" parce que le contournement est désactivé et la cible \"{{to}}\" est désactivée"
+      }
     },
-    "type": "doit être une instance de \"{{type}}\""
+    "type": "doit être une instance de \"{{type}}\"",
+    "schema": "par exemple, il faut un joi"
   },
   "number": {
     "base": "doit être un nombre",
@@ -86,7 +107,9 @@
     "positive": "doit être un nombre positif",
     "precision": "ne doit pas avoir plus de {{limit}} précision décimale",
     "ref": "référence \"{{ref}}\" qui n'est pas un nombre",
-    "multiple": "doit être un multiple de {{multiple}}"
+    "multiple": "doit être un multiple de {{multiple}}",
+    "port": "doit être un port valide",
+    "map": "doit être un nombre ou un de {{enums}}"
   },
   "string": {
     "base": "doit être une chaîne de caractères",
@@ -97,15 +120,22 @@
     "token": "ne doit contenir que des caractères alphanumériques et soulignés",
     "regex": {
       "base": "avec la valeur \"{{!value}}\" ne correspond pas au modèle suivant demandé: {{pattern}}",
-      "name": "avec la valeur \"{{!value}}\" ne correspond pas à la valeur du modèle {{name}}"
+      "name": "avec la valeur \"{{!value}}\" ne correspond pas à la valeur du modèle {{name}}",
+      "invert": {
+        "base": "avec la valeur \"{{!value}}\" ne correspond pas au modèle suivant demandé: {{pattern}}",
+        "name": "avec la valeur \"{{!value}}\" ne correspond pas à la valeur du modèle {{name}}"
+      }
     },
     "email": "doit être un courriel valide",
     "uri": "doit être un URI valide",
+    "uriRelativeOnly": "doit être un parent uri",
     "uriCustomScheme": "doit être un uri valide avec un schéma correspondant au modèle {{scheme}}",
     "isoDate": "doit être une date ISO 8601 valide",
     "guid": "doit être un GUID valide",
     "hex": "ne doit contenir que des caractères hexadécimaux",
+    "base64": "doit être un base64 valable.",
     "hostname": "doit être un nom de domaine valide",
+    "normalize": "doit être unicode normalisée en la {{form}} forme",
     "lowercase": "doivent contenir uniquement des caractères minuscules",
     "uppercase": "ne doivent contenir que des caractères majuscules",
     "trim": "ne doit pas avoir d'espaces au début ou à la fin",

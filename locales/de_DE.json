@@ -1,12 +1,12 @@
 {
-  "root": "value",
+  "root": "wert",
   "key": "\"{{!label}}\" ",
   "messages": {
     "wrapArrays": true
   },
   "any": {
     "unknown": "ist nicht erlaubt",
-    "invalid": "beinhaltet einen ungültigen Wert",
+    "invalid": "ist einen ungültigen Wert",
     "empty": "darf nicht leer sein",
     "required": "ist obligatorisch",
     "allowOnly": "muss eins von {{valids}} sein",
@@ -17,27 +17,21 @@
   },
   "array": {
     "base": "muss eine Liste sein",
-    "includes":
-      "an der Position {{pos}} passt es nicht zu den zulässigen Typen",
-    "includesSingle":
-      "Einzelwert von \"{{!label}}\" passt nicht zu den zulässigen Typen",
+    "includes": "an der Position {{pos}} passt es nicht zu den zulässigen Typen",
+    "includesSingle": "einzelwert von \"{{!label}}\" passt nicht zu den zulässigen Typen",
     "includesOne": "an der Position {{pos}} scheitert weil {{reason}}",
-    "includesOneSingle":
-      "Einzelwert von \"{{!label}}\" scheitert weil {{reason}}",
-    "includesRequiredUnknowns":
-      "beinhaltet keine {{unknownMisses}} erforderliche Wert(e)",
+    "includesOneSingle": "einzelwert von \"{{!label}}\" scheitert weil {{reason}}",
+    "includesRequiredUnknowns": "beinhaltet keine {{unknownMisses}} erforderliche Wert(e)",
     "includesRequiredKnowns": "beinhaltet nicht {{knownMisses}}",
-    "includesRequiredBoth":
-      "beinhaltet nicht {{knownMisses}} und {{unknownMisses}} weitere erforderliche Wert(e)",
+    "includesRequiredBoth": "beinhaltet nicht {{knownMisses}} und {{unknownMisses}} weitere erforderliche Wert(e)",
     "excludes": "an der Position {{pos}} enthält einen ausgeschlossenen Wert",
-    "excludesSingle":
-      "Einzelwert von \"{{!label}}\" enthält einen ausgeschlossenen Wert",
+    "excludesSingle": "einzelwert von \"{{!label}}\" enthält einen ausgeschlossenen Wert",
     "min": "muss mindestens {{limit}} Elemente enthalten",
     "max": "muss weniger als oder gleich {{limit}} Elemente enthalten",
     "length": "muss {{limit}} Elemente enthalten",
     "ordered": "an der Position {{pos}} schlägt es fehl, weil {{reason}}",
-    "orderedLength":
-      "an der Position {{pos}} schlägt es fehl, weil das Array höchstens {{limit}} Elemente enthalten darf",
+    "orderedLength": "an der Position {{pos}} schlägt es fehl, weil das Array höchstens {{limit}} Elemente enthalten darf",
+    "ref": "referenzen \"{{ref}}\" die nicht eine positive ganzzahl",
     "sparse": "darf kein Array mit Nullwerten sein",
     "unique": "die Position {{pos}} enthält einen doppelten Wert"
   },
@@ -51,15 +45,29 @@
     "length": "muss {{limit}} Bytes sein"
   },
   "date": {
-    "base":
-      "muss eine Anzahl von Millisekunden oder eine gültige Datumszeichenfolge sein",
+    "base": "muss eine Anzahl von Millisekunden oder eine gültige Datumszeichenfolge sein",
+    "format": "muss eine string mit einer der folgenden formate {{format}}",
+    "strict": "muss eine gültiges datum",
     "min": "muss größer oder gleich \"{{limit}}\" sein",
     "max": "must be less than or equal to \"{{limit}}\"",
     "isoDate": "muss ein gültiges ISO 8601-Datum sein",
+    "timestamp": {
+      "javascript": "muss einen gültigen timestamp oder anzahl millisekunden",
+      "unix": "muss einen gültigen timestamp oder die anzahl der sekunden"
+    },
     "ref": "referenziert \"{{ref}}\" was kein Datum ist"
   },
   "function": {
-    "base": "muss eine Function sein"
+    "base": "muss eine Function sein",
+    "arity": "muss ein sondern von {{n}}",
+    "minArity": "muss ein sondern größer oder gleich {{n}}",
+    "maxArity": "muss ein sondern weniger oder gleich {{n}}",
+    "ref": "muss ein joi - bezug",
+    "class": "muss eine klasse"
+  },
+  "lazy": {
+    "base": "!!schema fehler: faule schema festgelegt werden müssen,",
+    "schema": "!!schema fehler: faule schema funktion muss wieder ein schema"
   },
   "object": {
     "base": "muss ein Object sein",
@@ -67,23 +75,25 @@
     "min": "muss mindestens {{limit}} Kinder haben",
     "max": "muss weniger oder gleich {{limit}} Kinder enthalten",
     "length": "muss {{limit}} Kinder enthalten",
-    "allowUnknown": "ist nicht erlaubt",
-    "with": "fehlender erforderlicher Peer \"{{peer}}\"",
-    "without": "Konflikt mit verbotenen Peer \"{{peer}}\"",
-    "missing": "muss mindestens einen von {{peers}} enthalten",
-    "xor": "enthält einen Konflikt zwischen exklusiven Peers {{peers}}",
-    "or": "muss mindestens einen von {{peers}} enthalten",
-    "and": "enthält {{present}} ohne folgende erforderlichen Peers {{missing}}",
-    "nand": "!!\"{{main}}\" darf nicht gleichzeitig mit {{peers}} existieren",
-    "assert":
-      "!!\"{{ref}}\" Validierung fehlgeschlagen, weil \"{{ref}}\" {{message}} fehlgeschlagen ist",
+    "allowUnknown": "!!\"{{!child}}\" ist nicht erlaubt",
+    "with": "!!\"{{mainWithLabel}}\" fehlender erforderlicher Peer \"{{peerWithLabel}}\"",
+    "without": "!!\"{{mainWithLabel}}\" Konflikt mit verbotenen Peer \"{{peerWithLabel}}\"",
+    "missing": "muss mindestens einen von {{peersWithLabels}} enthalten",
+    "xor": "enthält einen Konflikt zwischen exklusiven Peers {{peersWithLabels}}",
+    "or": "muss mindestens einen von {{peersWithLabels}} enthalten",
+    "and": "enthält {{presentWithLabels}} ohne folgende erforderlichen Peers {{missingWithLabels}}",
+    "nand": "!!\"{{mainWithLabel}}\" darf nicht gleichzeitig mit {{peersWithLabels}} existieren",
+    "assert": "!!\"{{ref}}\" Validierung fehlgeschlagen, weil \"{{ref}}\" {{message}} fehlgeschlagen ist",
     "rename": {
-      "multiple":
-        "kann das Kind \"{{from}}\" nicht umbenennen, da mehrere Umbenennungen deaktiviert sind und ein anderer Schlüssel bereits in \"{{to}}\" umbenannt wurde",
-      "override":
-        "kann das Kind \"{{from}}\" nicht umbenennen, weil das Überschreiben deaktiviert ist und das Ziel \"{{to}}\" existiert"
+      "multiple": "kann das Kind \"{{from}}\" nicht umbenennen, da mehrere Umbenennungen deaktiviert sind und ein anderer Schlüssel bereits in \"{{to}}\" umbenannt wurde",
+      "override": "kann das Kind \"{{from}}\" nicht umbenennen, weil das Überschreiben deaktiviert ist und das Ziel \"{{to}}\" existiert",
+      "regex": {
+        "multiple": "kann das Kind \"{{from}}\" nicht umbenennen, da mehrere Umbenennungen deaktiviert sind und ein anderer Schlüssel bereits in \"{{to}}\" umbenannt wurde",
+        "override": "kann das Kind \"{{from}}\" nicht umbenennen, weil das Überschreiben deaktiviert ist und das Ziel \"{{to}}\" existiert"
+      }
     },
-    "type": "muss ein \"{{type}}\" sein"
+    "type": "muss ein \"{{type}}\" sein",
+    "schema": "muss ein Joi beispiel"
   },
   "number": {
     "base": "muss eine Number sein",
@@ -97,7 +107,9 @@
     "positive": "muss eine positive Zahl sein",
     "precision": "darf nicht mehr als {{limit}} Dezimalstellen haben",
     "ref": "referenziert \"{{ref}}\" was keine Number ist",
-    "multiple": "muss ein Vielfaches von {{multiple}} sein"
+    "multiple": "muss ein Vielfaches von {{multiple}} sein",
+    "port": "muss ein gültiger hafen",
+    "map": "muss eine zahl oder eine {{enums}}"
   },
   "string": {
     "base": "muss ein String sein",
@@ -107,27 +119,29 @@
     "alphanum": "darf nur alphanumerische Zeichen enthalten",
     "token": "darf nur alphanumerische Zeichen und Unterstriche enthalten",
     "regex": {
-      "base":
-        "mit Wert \"{{!value}}\" stimt es nicht mit dem erforderlichen Muster überein: {{pattern}}",
-      "name":
-        "mit Wert \"{{!value}}\" stimt es nicht mit dem {{name}} Muster überein"
+      "base": "mit Wert \"{{!value}}\" stimt es nicht mit dem erforderlichen Muster überein: {{pattern}}",
+      "name": "mit Wert \"{{!value}}\" stimt es nicht mit dem {{name}} Muster überein",
+      "invert": {
+        "base": "mit Wert \"{{!value}}\" stimt es nicht mit dem erforderlichen Muster überein: {{pattern}}",
+        "name": "mit Wert \"{{!value}}\" stimt es nicht mit dem {{name}} Muster überein"
+      }
     },
     "email": "muss eine valide Email sein",
     "uri": "muss eine valide URI sein",
-    "uriCustomScheme":
-      "muss eine valide URI sein mit einem Schema, dass mit dem {{scheme}} Muster übereinstimmt",
+    "uriRelativeOnly": "muss ein gültiger relative uri",
+    "uriCustomScheme": "muss eine valide URI sein mit einem Schema, dass mit dem {{scheme}} Muster übereinstimmt",
     "isoDate": "muss ein gültiges ISO 8601-Datum sein",
     "guid": "muss eine valide GUID sein",
     "hex": "darf nur hexadezimale Zeichen enthalten",
+    "base64": "muss ein gültiger base64 - string",
     "hostname": "muss ein gültiger Hostname sein",
+    "normalize": "muss unicode normalisierten in der {{form}} form",
     "lowercase": "darf nur Kleinbuchstaben enthalten",
     "uppercase": "darf nur Großbuchstaben enthalten",
     "trim": "darf keine führenden oder nachgestellten Leerzeichen enthalten",
     "creditCard": "muss eine Kreditkarte sein",
-    "ref": "Referenziert \"{{ref}}\", was keine Nummer ist",
-
+    "ref": "referenziert \"{{ref}}\", was keine nummer ist",
     "ip": "muss eine gültige IP-Adresse mit einer {{cidr}} CIDR sein",
-    "ipVersion":
-      "muss eine gültige IP-Adresse sein die mit einer der folgenden Versionen {{version}} und {{cidr}} CIDR übereinstimmt"
+    "ipVersion": "muss eine gültige IP-Adresse sein die mit einer der folgenden Versionen {{version}} und {{cidr}} CIDR übereinstimmt"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "root": "value",
+  "root": "стоимость",
   "key": "\"{{!label}}\" ",
   "messages": {
     "wrapArrays": true
