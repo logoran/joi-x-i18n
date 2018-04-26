@@ -110,10 +110,14 @@ module.exports = function (Joi, directory, defaultLocale, extensions) {
       const options = count === 3 ? arguments[2] : {};
 
       if (options.i18n) {
-        if (locales[options.i18n]) {
+        if (locales[options.i18n] && !options.language) {
           options.language = locales[options.i18n];
         }
         delete options.i18n;
+      }
+
+      if (!options.language && defaultLocale) {
+        options.language = locales[defaultLocale];
       }
 
       const schema = arguments[1];
@@ -127,8 +131,19 @@ module.exports = function (Joi, directory, defaultLocale, extensions) {
     joi.loadDirectory(directory, extensions || ['js', 'json']);
   }
 
+  // inherit the defaultLocale
+  if (!defaultLocale && Joi.getDefaultLocale) {
+    defaultLocale = Joi.getDefaultLocale();
+  }
+
+  // get the environment lang
   if (!defaultLocale && typeof process.env.LANG === 'string') {
     defaultLocale = process.env.LANG.split('.', 1).shift();
+  }
+
+  // check the defaultLocale
+  if (defaultLocale) {
+    joi.setDefaultLocale(defaultLocale);
   }
 
   return joi;

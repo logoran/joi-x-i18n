@@ -42,7 +42,7 @@ describe('loadDirectory joi-x-i18n', () => {
 });
 
 describe('Validate Schemas', () => {
-  let Joi = require('../index')(joi);
+  let Joi = require('../index')(joi, {defaultLocale: 'en_US'});
   const schema = {
     name: Joi.string().required(),
     isPlayer: Joi.boolean().optional()
@@ -81,7 +81,7 @@ describe('Validate Schemas', () => {
   });
 
   it('when a i18n option is sended and a correct directory haven`t the translation `file`', () => {
-    Joi = require('../index')(joi, __dirname + '/../locales');
+    Joi = require('../index')(Joi, __dirname + '/../locales');
     Joi.validate({}, schema, {i18n: 'es'}, (err, data) => {
       expect(err).to.include({isJoi: true, name: 'ValidationError'});
       expect(err.details).to.part.include([{message: '"name" is required'}]);
@@ -109,6 +109,15 @@ describe('Validate Schemas', () => {
     Joi.validate({}, schema, {i18n: 'zh_CN'}, (err, data) => {
       expect(err).to.include({isJoi: true, name: 'ValidationError'});
       expect(err.details).to.part.include([{message: '"name" 是必须的'}]);
+    });
+  });
+
+  it('when process.env.LANG is not set, use the original language set', () => {
+    delete process.env.LANG;
+    Joi = require('../index')(joi);
+    Joi.validate({}, schema, {i18n: 'en_US'}, (err, data) => {
+      expect(err).to.include({isJoi: true, name: 'ValidationError'});
+      expect(err.details).to.part.include([{message: '"name" is required'}]);
     });
   });
 });
