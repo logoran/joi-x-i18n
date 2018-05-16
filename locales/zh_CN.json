@@ -133,6 +133,7 @@
     "isoDate": "必须是ISO 8601日期格式",
     "guid": "必须是有效的GUID",
     "hex": "必须是十六进制格式",
+    "hexAlign": "十六进制必须按字节对齐",
     "base64": "必须是有效的base64格式",
     "hostname": "必须是有效的网络名称",
     "normalize": "必须是{{form}}格式内容",

@@ -133,6 +133,7 @@
     "isoDate": "debe ser una fecha valida ISO 8601",
     "guid": "debe ser un valido GUID",
     "hex": "debe contener caracteres hexadecimales",
+    "hexAlign": "representación hexadecimal byte decodificado deben estar alineados",
     "base64": "debe ser una cadena base64 válido",
     "hostname": "debe ser un valido hostname",
     "normalize": "debe ser Unicode normalizado en la {{form}} forma",
