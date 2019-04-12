@@ -1,4 +1,4 @@
-# joi-x-i18n
+# joi-i18n-x
 
 [![Build Status][travis-badge]][travis-url]
 [![Coverage Status][coveralls-badge]][coveralls-url]
@@ -7,12 +7,12 @@
 i18n error messages extension for Joi [Joi](https://github.com/hapijs/joi)
 
 ###  Getting Started
-For using joi-x-i18n is very simple:
+For using joi-i18n-x is very simple:
 ```javascript
 'use strict';
-const Joi = require('joi-x-i18n')(require('joi'), __dirname + '/locales');
+const Joi = require('joi-i18n-x')(require('joi'), __dirname + '/locales');
 ```
-You must send to joi-x-i18n an intance of Joi and the directory of the translation files.
+You must send to joi-i18n-x an intance of Joi and the directory of the translation files.
 
 After, initializing the module, you have the instance of Joi, and you can use that like you use Joi.
 
@@ -83,12 +83,12 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-[0]: https://github.com/logoran/joi-x-i18n/issues?q=is%3Aopen+is%3Aenchancement+is%3Abug
+[0]: https://github.com/logoran/joi-i18n-x/issues?q=is%3Aopen+is%3Aenchancement+is%3Abug
 
-[travis-badge]: https://api.travis-ci.org/logoran/joi-x-i18n.svg?branch=master
-[travis-url]: https://travis-ci.org/logoran/joi-x-i18n
-[coveralls-badge]:https://coveralls.io/repos/logoran/joi-x-i18n/badge.svg?branch=master&service=github
-[coveralls-url]: https://coveralls.io/github/logoran/joi-x-i18n?branch=master
-[david-badge]: https://david-dm.org/logoran/joi-x-i18n.svg
-[david-url]: https://david-dm.org/logoran/joi-x-i18n
+[travis-badge]: https://api.travis-ci.org/logoran/joi-i18n-x.svg?branch=master
+[travis-url]: https://travis-ci.org/logoran/joi-i18n-x
+[coveralls-badge]:https://coveralls.io/repos/logoran/joi-i18n-x/badge.svg?branch=master&service=github
+[coveralls-url]: https://coveralls.io/github/logoran/joi-i18n-x?branch=master
+[david-badge]: https://david-dm.org/logoran/joi-i18n-x.svg
+[david-url]: https://david-dm.org/logoran/joi-i18n-x
 

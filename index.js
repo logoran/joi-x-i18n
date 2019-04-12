@@ -122,7 +122,7 @@ module.exports = function (Joi, directory, defaultLocale, extensions) {
 
       const schema = arguments[1];
 
-      return originalValidate(value, schema, options, callback);
+      return originalValidate.call(this, value, schema, options, callback);
     },
     enumerable: false
   });

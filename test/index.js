@@ -4,7 +4,7 @@ const Lab = require('lab');
 const { describe, it, expect } = exports.lab = Lab.script();
 const joi = require('joi');
 
-describe('Initialize joi-x-i18n', () => {
+describe('Initialize joi-i18n-x', () => {
   it('throws an error if no Joi instance sended in constructor', () => {
     expect(require('../index')).to.throw(TypeError, 'Joi is required');
   });
@@ -14,7 +14,7 @@ describe('Initialize joi-x-i18n', () => {
   });
 });
 
-describe('DefaultLocale joi-x-i18n', () => {
+describe('DefaultLocale joi-i18n-x', () => {
   let Joi = require('../index')(joi);
 
   it('return default locale seted', () => {
@@ -33,7 +33,7 @@ describe('DefaultLocale joi-x-i18n', () => {
   });
 });
 
-describe('loadDirectory joi-x-i18n', () => {
+describe('loadDirectory joi-i18n-x', () => {
   let Joi = require('../index')(joi);
 
   it('loadDirectory return the same instance sended', () => {
