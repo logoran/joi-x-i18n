@@ -6,32 +6,32 @@
   },
   "any": {
     "unknown": "no está permitido(a)",
-    "invalid": "contiene un valor inválido",
+    "invalid": "contiene un valor no válido",
     "empty": "no debe estar vacío",
     "required": "es un campo obligatorio",
-    "allowOnly": "sólo se permite estos valores {{valids}}",
-    "default": "tiró un error cuándo corriendo método por defecto"
+    "allowOnly": "sólo se permiten estos valores {{valids}}",
+    "default": "se produjo un error al ejecutar el método por defecto"
   },
   "alternatives": {
     "base": "no coincide con ninguna de las alternativas permitidas"
   },
   "array": {
     "base": "debe ser un array",
-    "includes": "en la posicion {{pos}} no coincide con ninguno de los permitidos Tipos",
-    "includesSingle": "valor único de \"{{!label}}\" no coincide con ninguno de los permitidos tipos",
-    "includesOne": "en la posicion {{pos}} falla porque {{reason}}",
+    "includes": "en la posición {{pos}} no coincide con ninguno de los tipos permitidos",
+    "includesSingle": "valor único de \"{{!label}}\" no coincide con ninguno de los tipos permitidos",
+    "includesOne": "en la posición {{pos}} se ha producido un error porque {{reason}}",
     "includesOneSingle": "valor único de \"{{!label}}\" falla porque {{reason}}",
-    "includesRequiredUnknowns": "no contiene {{unknownMisses}} valor requerido(s)",
+    "includesRequiredUnknowns": "no contiene {{unknownMisses}} valor(es) requerido(s)",
     "includesRequiredKnowns": "no contiene {{knownMisses}}",
-    "includesRequiredBoth": "no contiene {{knownMisses}} y {{unknownMisses}} otros valor requerido(s)",
-    "excludes": "en la posicion {{pos}} contiene un excluido valor",
+    "includesRequiredBoth": "no contiene {{knownMisses}} y {{unknownMisses}} otros valor(es) requerido(s)",
+    "excludes": "en la posición {{pos}} contiene un valor excluido",
     "excludesSingle": "valor único de \"{{!label}}\" no contiene un valor",
-    "min": "debe contener al menos {{limit}} items",
-    "max": "debe contener menos de o igual a {{limit}} items",
-    "length": "debe contener {{limit}} items",
-    "ordered": "en la posicion {{pos}} falla porque {{reason}}",
-    "orderedLength": "en la posicion {{pos}} falla porque array debe contener en la mayoria de {{limit}} items",
-    "ref": "referencias \"{{ref}}\" que no es un número entero positivo",
+    "min": "debe contener al menos {{limit}} elemento(s)",
+    "max": "debe contener menos o igual a {{limit}} elemento(s)",
+    "length": "debe contener {{limit}} elemento(s)",
+    "ordered": "en la posición {{pos}} falla porque {{reason}}",
+    "orderedLength": "en la posición {{pos}} falla porque array debe contener en la mayoria de {{limit}} elemento(s)",
+    "ref": "la referencia \"{{ref}}\" no es un número entero positivo",
     "sparse": "no debe ser una escasa variedad",
     "unique": "posición {{pos}} contiene un valor duplicado"
   },
@@ -42,23 +42,23 @@
     "base": "debe ser una cadena o un buffer",
     "min": "debe tener al menos {{limit}} bytes",
     "max": "debe ser menor o igual a {{limit}} bytes",
-    "length": "debe ser {{limit}} bytes"
+    "length": "debe ser de {{limit}} bytes"
   },
   "date": {
-    "base": "debe ser un número de milisegundos o fecha valida String",
+    "base": "debe ser un número de milisegundos o fecha válida String",
     "format": "debe ser una cadena con uno de los siguientes formatos {{format}}",
-    "strict": "debe ser una fecha valida",
+    "strict": "debe ser una fecha válida",
     "min": "debe ser mayor que o igual a \"{{limit}}\"",
     "max": "debe ser menor o igual a \"{{limit}}\"",
-    "isoDate": "debe ser una fecha valida ISO 8601",
+    "isoDate": "debe ser una fecha válida ISO 8601",
     "timestamp": {
-      "javascript": "debe ser un valido * timestamp o número de milisegundos",
-      "unix": "debe ser un valido * timestamp o número de segundos"
+      "javascript": "debe ser un válido * timestamp o número de milisegundos",
+      "unix": "debe ser un válido * timestamp o número de segundos"
     },
     "ref": "referencias \"{{ref}}\" que no es una fecha"
   },
   "function": {
-    "base": "debe ser una funcion",
+    "base": "debe ser una función",
     "arity": "debe haber un arity de {{n}}",
     "minArity": "debe haber un arity mayor o igual a {{n}}",
     "maxArity": "debe haber un arity menor o igual a {{n}}",
@@ -72,9 +72,9 @@
   "object": {
     "base": "debe ser un objeto",
     "child": "!!niño \"{{!Child}}\" falla porque {{reason}}",
-    "min": "debe tener al menos {{limit}} niños",
-    "max": "debe haber menos de o igual a {{limit}} niños",
-    "length": "debe tener {{limit}} niños",
+    "min": "debe tener al menos {{limit}} hijo(s)",
+    "max": "debe haber menos o igual a {{limit}} hijo(s)",
+    "length": "debe tener {{limit}} hijo(s)",
     "allowUnknown": "!!\"{{!child}}\" no es permitido",
     "with": "!!\"{{mainWithLabel}}\" falta peer \"{{peerWithLabel}}\"",
     "without": "!!\"{{mainWithLabel}}\" conflicto con forbidden peer \"{{peerWithLabel}}\"",
@@ -83,17 +83,17 @@
     "or": "debe contener al menos uno de {{peersWithLabels}}",
     "and": "contiene {{presentWithLabels}} sin su necesaria pares {{missingWithLabels}}",
     "nand": "!!\"{{mainWithLabel}}\" no debe existir simultáneamente con {{peersWithLabels}}",
-    "assert": "!!\"{{ref}}\" validacion falló porque \"{{ref}}\" fallo al {{message}}",
+    "assert": "!!\"{{ref}}\" validación falló porque \"{{ref}}\" falló al {{message}}",
     "rename": {
-      "multiple": "no puede renombrar el niño \"{{from}}\" porque múltiples renombra son discapacitados y otra llave ya fue cambiado a \"{{to}}\"",
-      "override": "no puede renombrar el niño \"{{from}}\" porque está desactivada y objetivo \"{{to}}\" existe",
+      "multiple": "no puede renombrar el hijo \"{{from}}\" porque no se permiten múltiples renombrados y otra clave ya fue cambiada a \"{{to}}\"",
+      "override": "no puede renombrar el hijo \"{{from}}\" porque está desactivada y objetivo \"{{to}}\" existe",
       "regex": {
-        "multiple": "no puede renombrar el niño \"{{from}}\" porque múltiples renombra son discapacitados y otra llave ya fue cambiado a \"{{to}}\"",
-        "override": "no puede renombrar el niño \"{{from}}\" porque está desactivada y objetivo \"{{to}}\" existe"
+        "multiple": "no puede renombrar el hijo \"{{from}}\" porque no se permiten múltiples renombrados y otra clave ya fue cambiada a \"{{to}}\"",
+        "override": "no puede renombrar el hijo \"{{from}}\" porque está desactivada y el objetivo \"{{to}}\" existe"
       }
     },
     "type": "debe ser una instancia de \"{{type}}\"",
-    "schema": "debe ser una Joi ejemplo"
+    "schema": "debe ser una Joi, por ejemplo"
   },
   "number": {
     "base": "tiene que ser un número",
@@ -102,11 +102,11 @@
     "less": "debe ser menor de {{limit}}",
     "greater": "debe ser mayor de {{limit}}",
     "float": "debe ser un flotante",
-    "integer": "debe ser un numero entero",
-    "negative": "debe ser un numero negativo",
-    "positive": "debe ser un numero posativo",
+    "integer": "debe ser un número entero",
+    "negative": "debe ser un número negativo",
+    "positive": "debe ser un número positivo",
     "precision": "no debe tener más de {{limit}} decimales",
-    "ref": "referencias \"{{ref}}\" que no es un número",
+    "ref": "la referencia \"{{ref}}\" no es un número",
     "multiple": "debe ser un múltiplo de {{multiple}}",
     "port": "debe ser un puerto válido",
     "map": "debe ser un número o una de {{enums}}"
@@ -117,32 +117,32 @@
     "max": "debe ser menor o igual a {{limit}} caracteres",
     "length": "debe ser iqual a {{limit}} caracteres",
     "alphanum": "sólo debe contener caracteres alfanuméricos",
-    "token": "sólo debe contener caracteres alfanuméricos y subrayados",
+    "token": "sólo debe contener caracteres alfanuméricos y guiones bajos",
     "regex": {
-      "base": "con el valor \"{{!value}}\" no coincide con el patrón requerido: {{pattern}}",
-      "name": "con el valor \"{{!value}}\" no coincide con el patrón {{name}}",
+      "base": "el valor \"{{!value}}\" no coincide con el patrón requerido: {{pattern}}",
+      "name": "el valor \"{{!value}}\" no coincide con el patrón {{name}}",
       "invert": {
-        "base": "con el valor \"{{!value}}\" coincide con el patrón invertido: {{pattern}}",
-        "name": "con el valor \"{{!valor}}\" coincide con el patrón invertido {{name}}"
+        "base": "el valor \"{{!value}}\" coincide con el patrón invertido: {{pattern}}",
+        "name": "el valor \"{{!valor}}\" coincide con el patrón invertido {{name}}"
       }
     },
     "email": "debe ser un correo electrónico válido",
-    "uri": "debe ser un URL válido",
+    "uri": "debe ser una URL válida",
     "uriRelativeOnly": "debe ser una URL relativa válida",
     "uriCustomScheme": "debe ser un URI válido con un esquema que coincida con el patrón {{scheme}}",
-    "isoDate": "debe ser una fecha valida ISO 8601",
-    "guid": "debe ser un valido GUID",
+    "isoDate": "debe ser una fecha válida ISO 8601",
+    "guid": "debe ser un GUID válido",
     "hex": "debe contener caracteres hexadecimales",
     "hexAlign": "representación hexadecimal byte decodificado deben estar alineados",
-    "base64": "debe ser una cadena base64 válido",
-    "hostname": "debe ser un valido hostname",
-    "normalize": "debe ser Unicode normalizado en la {{form}} forma",
-    "lowercase": "sólo debe contener caracteres en minúscula",
+    "base64": "debe ser una cadena base64 válida",
+    "hostname": "debe ser un hostname válido",
+    "normalize": "debe ser Unicode normalizado en la forma {{form}}",
+    "lowercase": "sólo debe contener caracteres en minúsculas",
     "uppercase": "sólo debe contener caracteres en mayúsculas",
-    "trim": "no debe haber dirigiendo o trailing whitespace",
-    "creditCard": "debe ser el numero de una tarjeta de crédito",
-    "ref": "referencias \"{{ref}}\" que no es un número",
-    "ip": "debe ser una dirección IP válida con un {{cidr}} CIDR",
-    "ipVersion": "debe ser una dirección IP válida de una de las siguientes versiones {{version}} a {{cidr}} CIDR"
+    "trim": "no debe haber espacios al principio y al final",
+    "creditCard": "debe ser el número de una tarjeta de crédito",
+    "ref": "la referencia \"{{ref}}\" no es un número",
+    "ip": "debe ser una dirección IP válida con un CIDR {{cidr}}",
+    "ipVersion": "debe ser una dirección IP válida de una de las siguientes versiones CIDR {{version}} a {{cidr}}"
   }
 }
