@@ -28,7 +28,7 @@ module.exports = function (Joi, directory, defaultLocale, extensions) {
     const errorDescriptor = Joi.alternatives().try([
       Joi.string().allow(null),
       Joi.func(),
-      Joi.object().pattern(/.+/, Joi.lazy(() => errorDescriptor).required())
+      Joi.object().pattern(/.+/, Joi.link(() => errorDescriptor).required())
     ]).label('descriptor');
     internals.schemas = {
       locale: Joi.string().allow(null).label('locale'),
